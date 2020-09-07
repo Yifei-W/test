@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Draw a graph</title>
+
+    <script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <!-- <svg>
+        <rect></rect>
+        <rect></rect>
+    </svg> -->
+
+    <script>
+
+        var dataset = [250, 210, 170, 130, 90];  //Data : the width of rects
+
+        var rectHeight = 25;   //rectHeight, include blank
+
+
+        var width = 300;  //
+        var height = 300;   //
+
+        var svg = d3.select("body")     //选择文档中的body元素
+            .append("svg")          //添加一个svg元素
+            .attr("width", width)       //设定宽度
+            .attr("height", height);    //设定高度
+
+        svg.selectAll("rect")   //select all rects in svg
+            .data(dataset)  //bangding shuzu
+            .enter()        //.enter()的意思是，如果数据源大于选中的元素数量，就要使用append（）方法，添加新的元素。
+            .append("rect") //添加足够数量的矩形
+            .attr("x", 20)  //设置x坐标为20
+            .attr("y", function (d, i) {
+                return i * rectHeight;
+            })              //设置y坐标
+            .attr("width", function (d) {
+                return d;
+            })
+            .attr("height", rectHeight - 2)      //设置高度
+            .attr("fill", "steelblue");          //设置颜色
+
+    </script>
+</body>
+
+</html>
+
